@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/toolbar_width_icon"
+    android:id="@+id/item_vol"
+    android:layout_height="@dimen/toolbar_width_icon"
+    android:background="@color/colorPrimary"
+    android:clickable="false"
+    android:text=" "/>

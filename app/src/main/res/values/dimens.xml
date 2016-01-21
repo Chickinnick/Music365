@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="est_conn_text_w">50dp</dimen>
+    <dimen name="videoFrame_h">350dp</dimen>
+</resources>

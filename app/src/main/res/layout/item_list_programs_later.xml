@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+
+    android:background="@drawable/item_outline_later">
+
+    <TextView
+
+        android:id="@+id/time_program_later"
+        style="@style/MainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/time_program" />
+
+
+    <Button
+        android:id="@+id/info_program_btn_later"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="@dimen/button_info_margin"
+        android:layout_toRightOf="@+id/time_program_later"
+        android:background="@drawable/info_ic" />
+
+
+    <TextView
+        android:layout_centerVertical="true"
+        android:id="@+id/program_title_later"
+        style="@style/MainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/title_program" />
+</RelativeLayout>

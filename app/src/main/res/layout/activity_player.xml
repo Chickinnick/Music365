@@ -1,0 +1,93 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".PlayerActivity"  android:id="@+id/root"
+    android:focusable="true"
+    android:keepScreenOn="true"
+    android:tag="player"
+    >
+
+
+        <com.google.android.exoplayer.AspectRatioFrameLayout android:id="@+id/video_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <SurfaceView android:id="@+id/surface_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+
+            <com.google.android.exoplayer.text.SubtitleLayout android:id="@+id/subtitles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <View android:id="@+id/shutter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackgroundAll"/>
+        </com.google.android.exoplayer.AspectRatioFrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/player_state_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textSize="10sp"
+            android:textColor="@android:color/transparent"
+            tools:ignore="SmallSp"/>
+
+
+        <ListView
+            android:scaleY="-0.75"
+            android:id="@+id/list_volume"
+            android:layout_width="@dimen/button_info_margin"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="70dp"
+            android:background="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="@dimen/button_info_margin"
+            android:visibility="gone" />
+        <!--<LinearLayout android:id="@+id/controls_root"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:visibility="gone"-->
+            <!--android:background="#88000000">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@drawable/logo"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/retry_tv"-->
+                <!--android:visibility="gone"-->
+                <!--android:text="@string/no_internet_msg"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:textColor="@color/background_bar"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <!--<Button android:id="@+id/retry_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/retry"-->
+                <!--android:visibility="gone"-->
+                <!--android:layout_gravity="center"-->
+                <!--style="@style/DemoButton"/>-->
+
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundAll">
+
+
+
+    <LinearLayout
+        android:background="@color/colorBackgroundAll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+
+            android:padding="@dimen/activity_vertical_margin"
+            android:background="@color/colorActionBar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize">
+
+            <ImageView
+                android:src="@drawable/menu_header"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/item1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_1_chaneels"
+            android:text="@string/item_1_channels"
+            style="@style/DrawerTitle" />
+
+        <TextView
+            android:id="@+id/item2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_2_programms"
+            android:text="@string/item_2_programms"
+            style="@style/DrawerTitle" />
+
+
+        <TextView
+            android:id="@+id/item3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_3_disable_ads"
+            android:text="@string/item_3_disable_ads"
+            style="@style/DrawerTitle" />
+
+        <TextView
+            android:id="@+id/item4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_4_settings"
+            android:text="@string/item_4_settings"
+            style="@style/DrawerTitle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/DrawerCategory" />
+
+        <TextView
+            android:id="@+id/item5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_5_rate_us"
+            android:text="@string/item_5_rate_us"
+            style="@style/DrawerTitle" />
+
+        <TextView
+            android:id="@+id/item6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_6_site"
+            android:text="@string/item_6_site"
+            style="@style/DrawerTitle" />
+
+        <TextView
+            android:id="@+id/item7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/item_7_contact_us"
+            android:text="@string/item_7_contact_us"
+            style="@style/DrawerTitle" />
+
+        <RelativeLayout
+            android:layout_marginTop="40dp"
+            android:background="@color/colorBackgroundAll"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:onClick="openVk"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_vk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:onClick="openFB"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_fb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

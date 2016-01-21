@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_outline"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="@dimen/channel_item_padding">
+
+    <LinearLayout
+        android:clickable="false"
+        android:id="@+id/channel_description_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackgroundAll"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:clickable="false"
+            android:id="@+id/cahnnel_title"
+            style="@style/MainTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+
+            android:clickable="false"
+            android:id="@+id/channel_description"
+            style="@style/SimpleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ImageView
+        android:clickable="false"
+        android:id="@+id/channel_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/channel_description_layout" />
+
+
+    <ImageView
+        android:id="@+id/circle_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/play_ic" />
+
+
+    <RelativeLayout
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBackgroundAll">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:textColor="@color/time_program"
+            android:id="@+id/time_program"
+            style="@style/MainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_margin="@dimen/button_info_margin"
+            android:background="@drawable/info_ic"
+            android:id="@+id/info_program_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/time_program" />
+
+        <TextView
+            android:clickable="false"
+            android:id="@+id/program_title"
+            style="@style/MainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/program_title" />
+    </RelativeLayout>
+
+</RelativeLayout>

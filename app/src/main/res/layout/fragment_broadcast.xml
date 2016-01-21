@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundAll"
+    android:padding="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+
+    <com.google.android.exoplayer.AspectRatioFrameLayout
+        android:id="@+id/video_frame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/videoFrame_h"
+        android:layout_gravity="center">
+
+        <SurfaceView
+            android:id="@+id/surface_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <com.google.android.exoplayer.text.SubtitleLayout
+            android:id="@+id/subtitles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/shutter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/buttonColor" />
+
+        <ImageButton
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            android:id="@+id/fullscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_fullscreen" />
+    </com.google.android.exoplayer.AspectRatioFrameLayout>
+
+
+    <TextView
+        android:textColor="@color/colorTextDark"
+        style="@style/MainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/now" />
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:background="@drawable/item_outline_now">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/time_program_current"
+            style="@style/MainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <Button android:layout_margin="@dimen/button_info_margin"
+            android:background="@drawable/info_ic"
+            android:id="@+id/info_program_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/time_program_current" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:textColor="@color/yellow"
+            android:id="@+id/program_title_current"
+            style="@style/MainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <TextView
+
+        android:textColor="@color/colorTextDark"
+        style="@style/MainTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/later" />
+
+    <ListView
+
+        android:id="@+id/watch_later"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

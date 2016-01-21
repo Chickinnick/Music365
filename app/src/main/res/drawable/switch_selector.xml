@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:drawable="@color/colorAccent" android:state_checked="true"/>
+        <item android:drawable="@color/common_signin_btn_light_text_default" android:state_checked="false"/>
+        <item android:drawable="@android:color/transparent"></item>
+
+</selector>

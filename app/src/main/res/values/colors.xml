@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#7A1B07</color>
+    <color name="colorAccent">#AB2A0B</color>
+    <color name="colorActionBar">#AB2A0B</color>
+    <color name="colorText">#CDCDCD</color>
+    <color name="colorTextSelected">#F1CD91</color>
+    <color name="colorBackground">#CDCDCD</color>
+    <color name="colorBackgroundAll">#191919</color>
+    <color name="buttonColor">#4A4A4A</color>
+    <color name="yellow">#E0A816</color>
+    <color name="program_title">#B68045</color>
+    <color name="time_program">#6CB3C1</color>
+    <color name="title_program">#BB6652</color>
+    <color name="colorTextDark">#535353</color>
+
+
+    <color name="volume_bar_0">#69544F</color>
+    <color name="volume_bar_1">#7E5C51</color>
+    <color name="volume_bar_2">#93644F</color>
+    <color name="volume_bar_3">#A86B48</color>
+    <color name="volume_bar_4">#BE733D</color>
+    <color name="volume_bar_5">#D37D2D</color>
+    <color name="volume_bar_6">#E88819</color>
+    <color name="volume_bar_7">#FE9700</color>
+</resources>
