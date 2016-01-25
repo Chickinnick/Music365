@@ -6,6 +6,7 @@
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackgroundAll"
     android:id="@+id/main_root_layout"
+    android:keepScreenOn="true"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -24,11 +25,12 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
         <Button
+            android:layout_centerVertical="true"
             android:onClick="toggleMenu"
             android:background="@drawable/arr_back"
             android:id="@+id/menu_btn"
             android:layout_width="@dimen/toolbar_width_icon"
-            android:layout_height="match_parent" />
+            android:layout_height="@dimen/toolbar_width_icon" />
 
 
     <Spinner
@@ -47,10 +49,22 @@
         style="@style/MainTitle"/>
 
         <Button
-            android:layout_centerVertical="true"
+            android:onClick="onShareButtonClicked"
+            android:background="@drawable/share_btn"
+            android:id="@+id/share_btn"
+            android:layout_width="@dimen/toolbar_width_icon"
+            android:layout_height="@dimen/toolbar_width_icon"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:layout_alignTop="@+id/disable_ad_btn"
+            android:layout_toStartOf="@+id/disable_ad_btn"
+            android:layout_marginEnd="22dp" />
+    <Button
+        android:layout_marginLeft="@dimen/menu_margin_btns"
+        android:layout_alignParentEnd="true"
+         android:layout_centerVertical="true"
             android:onClick="onUpgradeAppButtonClicked"
             android:layout_margin="@dimen/button_margin"
-            android:layout_alignParentRight="true"
             android:background="@drawable/disable_ads_act_bar"
             android:id="@+id/disable_ad_btn"
             android:layout_width="@dimen/toolbar_width_icon"

@@ -15,8 +15,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.accessibility.CaptioningManager;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,7 +37,6 @@ import com.google.android.exoplayer.metadata.PrivMetadata;
 import com.google.android.exoplayer.metadata.TxxxMetadata;
 import com.google.android.exoplayer.text.CaptionStyleCompat;
 import com.google.android.exoplayer.text.Cue;
-import com.google.android.exoplayer.text.SubtitleLayout;
 import com.google.android.exoplayer.util.Util;
 
 import java.net.CookieHandler;
@@ -70,11 +71,10 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback,
 
     private EventLogger eventLogger;
     private View debugRootView;
-    private View shutterView;
+
     private AspectRatioFrameLayout videoFrame;
     private SurfaceView surfaceView;
     private TextView playerStateTextView;
-    private SubtitleLayout subtitleLayout;
 
 //  private Button retryButton;
 //  private TextView retryMsg;
@@ -111,6 +111,10 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback,
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_player);
         contentType = 2;
         contentId = CONTENT_ID_EXTRA;
@@ -118,7 +122,6 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback,
         sharedPreferences = getSharedPreferences(SettingsFragment.MESSAGE_PREF, Context.MODE_PRIVATE);
 
         am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-        enableBackgroundAudio =  sharedPreferences.getBoolean(SettingsFragment.KEY_PLAY_IN_BG, false);
         int currentVolumeLevel = am.getStreamVolume(AudioManager.STREAM_MUSIC) / 2;
         for (int i = 0; i < currentVolumeLevel; i++)
             volumeItems.add(" ");
@@ -129,7 +132,7 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback,
         volumeContainer.setAdapter(volumeAdapter);
 
         final GestureDetector gestureDetector  = new GestureDetector(this, new GestureListener());
-Log.d("PLAYER", "Player on create");
+        Log.d("PLAYER", "Player on create");
         View root = findViewById(R.id.root);
         root.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -159,16 +162,22 @@ Log.d("PLAYER", "Player on create");
 
         audioCapabilitiesReceiver = new AudioCapabilitiesReceiver(this, this);
 
-        shutterView = findViewById(R.id.shutter);
+
         //debugRootView = findViewById(R.id.controls_root);
 
-        videoFrame = (AspectRatioFrameLayout) findViewById(R.id.video_frame);
-        surfaceView = (SurfaceView) findViewById(R.id.surface_view);
+        videoFrame = (AspectRatioFrameLayout) findViewById(R.id.video_frame_f);
+        surfaceView = (SurfaceView) findViewById(R.id.surface_view_f);
         surfaceView.getHolder().addCallback(this);
 
         playerStateTextView = (TextView) findViewById(R.id.player_state_view);
-        subtitleLayout = (SubtitleLayout) findViewById(R.id.subtitles);
 
+        ImageView fullscreen_btn = (ImageView) findViewById(R.id.fullscreen_btn_fs);
+        fullscreen_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     //   retryButton = (Button) findViewById(R.id.retry_button);
     //   retryButton.setOnClickListener(this);
@@ -198,16 +207,15 @@ Log.d("PLAYER", "Player on create");
   //     if(contentUri==null){
   //         StreamsAsyncTask streamsAsyncTask = new StreamsAsyncTask();
   //         streamsAsyncTask.execute();
-  //     }
+    //     }
   //     toggleControlsVisibility();
 
-  // }
+    // }
 
     @Override
     public void onPause() {
         super.onPause();
         audioCapabilitiesReceiver.unregister();
-        shutterView.setVisibility(View.VISIBLE);
         if (!enableBackgroundAudio) {
             releasePlayer();
         } else {
@@ -440,7 +448,6 @@ Log.d("PLAYER", "Player on create");
  //  }
     @Override
     public void onVideoSizeChanged(int width, int height, float pixelWidthAspectRatio) {
-        shutterView.setVisibility(View.GONE);
         videoFrame.setAspectRatio(
                 height == 0 ? 1 : (width * pixelWidthAspectRatio) / height);
     }
@@ -464,7 +471,6 @@ Log.d("PLAYER", "Player on create");
 
     @Override
     public void onCues(List<Cue> cues) {
-        subtitleLayout.setCues(cues);
     }
 
     // DemoPlayer.MetadataListener implementation
@@ -522,8 +528,6 @@ Log.d("PLAYER", "Player on create");
             captionStyle = CaptionStyleCompat.DEFAULT;
             captionFontScale = 1.0f;
         }
-        subtitleLayout.setStyle(captionStyle);
-        subtitleLayout.setFontScale(captionFontScale);
     }
 
     @TargetApi(19)

@@ -9,24 +9,32 @@
     >
 
 
-        <com.google.android.exoplayer.AspectRatioFrameLayout android:id="@+id/video_frame"
+        <com.google.android.exoplayer.AspectRatioFrameLayout android:id="@+id/video_frame_f"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center">
 
-            <SurfaceView android:id="@+id/surface_view"
+            <SurfaceView android:id="@+id/surface_view_f"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"/>
 
-            <com.google.android.exoplayer.text.SubtitleLayout android:id="@+id/subtitles"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 
-            <View android:id="@+id/shutter"
+            <RelativeLayout
+                android:id="@+id/controls_layout_fullscreen"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorBackgroundAll"/>
+                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/fullscreen_btn_fs"
+                android:layout_width="@dimen/menu_icon_side"
+                android:layout_height="@dimen/menu_icon_side"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_minscreen" />
+</RelativeLayout>
+
         </com.google.android.exoplayer.AspectRatioFrameLayout>
 
 

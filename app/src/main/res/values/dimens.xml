@@ -2,4 +2,9 @@
 <resources>
     <dimen name="est_conn_text_w">50dp</dimen>
     <dimen name="videoFrame_h">350dp</dimen>
+    <dimen name="menu_drawable_padding">10dp</dimen>
+    <dimen name="menu_icon_side">40dp</dimen>
+    <dimen name="menu_margin_btns">30dp</dimen>
+    <dimen name="channel_title_text_size">20sp</dimen>
+    <dimen name="info_btn_side">30dp</dimen>
 </resources>

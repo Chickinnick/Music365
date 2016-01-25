@@ -50,21 +50,24 @@ android:padding="@dimen/activity_vertical_margin"
          >
         <TextView
 
-            android:layout_margin="@dimen/button_margin"
             android:id="@+id/text_bg"
             android:text="@string/play_in_bg"
             style="@style/MainTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView" />
         <android.support.v7.widget.SwitchCompat
-            android:layout_toRightOf="@+id/text_bg"
             android:layout_width="wrap_content"
             android:layout_height="63dp"
             android:id="@+id/switch1"
             android:layout_gravity="right"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="60dp" />
+            android:layout_alignEnd="@+id/textView"
+            android:layout_marginEnd="60dp"
+            android:layout_above="@+id/textView" />
         <TextView
 
             android:layout_margin="@dimen/button_margin"
@@ -72,7 +75,8 @@ android:padding="@dimen/activity_vertical_margin"
             android:text="@string/play_in_bg_details"
             style="@style/SimpleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" />
     </RelativeLayout>
     <View
         android:background="@color/buttonColor"
@@ -84,28 +88,32 @@ android:padding="@dimen/activity_vertical_margin"
          >
         <TextView
 
-            android:layout_margin="@dimen/button_margin"
             android:id="@+id/text_bg1"
             android:text="@string/keep_conn"
             style="@style/MainTitle"
             android:layout_width="@dimen/est_conn_text_w"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
         <android.support.v7.widget.SwitchCompat
-android:layout_toRightOf="@+id/text_bg1"
             android:layout_width="wrap_content"
             android:layout_height="63dp"
             android:id="@+id/switch2"
             android:layout_gravity="right"
+            android:layout_marginEnd="60dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="60dp" />
+            android:layout_alignEnd="@+id/textView2"
+            android:layout_alignBottom="@+id/text_bg1" />
         <TextView
             android:layout_margin="@dimen/button_margin"
             android:layout_below="@+id/text_bg1"
             android:text="@string/keep_conn_details"
             style="@style/SimpleText"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/textView2" />
     </RelativeLayout>
 
 

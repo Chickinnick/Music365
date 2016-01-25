@@ -8,16 +8,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.divarc.music365.MainActivity;
+import com.divarc.music365.Player;
 import com.divarc.music365.PlayerActivity;
 import com.divarc.music365.R;
 import com.divarc.music365.player.DemoPlayer;
@@ -44,7 +45,7 @@ import java.util.Map;
 public class
         PlayerFragment extends Fragment implements SurfaceHolder.Callback,
         DemoPlayer.Listener, DemoPlayer.CaptionListener, DemoPlayer.Id3MetadataListener,
-        AudioCapabilitiesReceiver.Listener{
+        AudioCapabilitiesReceiver.Listener, View.OnClickListener {
 
     public static final int TYPE_HLS = 2;
 
@@ -78,10 +79,13 @@ public class
     private AudioCapabilitiesReceiver audioCapabilitiesReceiver;
     private AudioCapabilities audioCapabilities;
 
-    ImageButton fullscreen;
+    ImageView fullscreen;
 
     MainActivity mainActivity;
 SharedPreferences sharedPreferences;
+    private RelativeLayout controlsLayout;
+    private ImageView circlePlayPlayer;
+    private boolean paused  = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,67 +93,62 @@ SharedPreferences sharedPreferences;
         contentUri = Uri.parse(getTag());
     }
 
-    public abstract class DoubleClickListener implements View.OnClickListener {
+    private static final long DOUBLE_CLICK_TIME_DELTA = 300;//milliseconds
 
-        private static final long DOUBLE_CLICK_TIME_DELTA = 300;//milliseconds
+    long lastClickTime = 0;
 
-        long lastClickTime = 0;
-
-        @Override
-        public void onClick(View v) {
-            long clickTime = System.currentTimeMillis();
-            if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA){
-                onDoubleClick(v);
-            } else {
-                onSingleClick(v);
-            }
-            lastClickTime = clickTime;
+    @Override
+    public void onClick(View v) {
+        Log.d("onclick" , v.getId()+ " " + (v.getId()==R.id.fullscreen));
+        long clickTime = System.currentTimeMillis();
+        if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA){
+            onDoubleClick(v);
+        } else {
+            onSingleClick(v);
         }
-
-        public abstract void onSingleClick(View v);
-        public abstract void onDoubleClick(View v);
+        lastClickTime = clickTime;
     }
+
+    public void onSingleClick(View v){
+
+        if(v.getId() == R.id.fullscreen){
+            onDoubleClick(v);
+        } else {
+            boolean b = player.getPlayWhenReady();
+
+
+            circlePlayPlayer.setVisibility(b?View.VISIBLE:View.INVISIBLE);
+            setPlayWhenReady(!b);
+        }
+    };
+    public void onDoubleClick(View v){
+        Player.getInstance().setPlayer(player);
+        Intent intent = new Intent(mainActivity, PlayerActivity.class);
+        intent.putExtra(MainActivity.fullscreen_url, contentUri.toString());
+        startActivity(intent);
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_broadcast, container, false);
         mainActivity  = (MainActivity) getActivity();
-        View root = view.findViewById(R.id.surface_view);
-
-root.setOnClickListener(new DoubleClickListener() {
-    @Override
-    public void onSingleClick(View v) {
-
-            boolean b = player.getPlayWhenReady();
-            setPlayWhenReady(!b);
-
-    }
-
-    @Override
-    public void onDoubleClick(View v) {
-        Intent intent = new Intent(mainActivity, PlayerActivity.class);
-        intent.putExtra(MainActivity.fullscreen_url, contentUri.toString());
-        startActivity(intent);
-    }
-});
-
-
-       fullscreen = (ImageButton) view.findViewById(R.id.fullscreen);
+        controlsLayout = (RelativeLayout) view.findViewById(R.id.controls_layout);
+        circlePlayPlayer = (ImageView) view.findViewById(R.id.circle_play_player);
+        fullscreen = (ImageView) view.findViewById(R.id.fullscreen);
         sharedPreferences = getActivity().getSharedPreferences(SettingsFragment.MESSAGE_PREF, Context.MODE_PRIVATE);
         enableBackgroundAudio = sharedPreferences.getBoolean(SettingsFragment.KEY_PLAY_IN_BG, false);
         audioCapabilitiesReceiver = new AudioCapabilitiesReceiver(getActivity().getApplicationContext(), this);
-
         shutterView = view.findViewById(R.id.shutter);
-
         videoFrame = (AspectRatioFrameLayout) view.findViewById(R.id.video_frame);
         surfaceView = (SurfaceView) view.findViewById(R.id.surface_view);
         surfaceView.getHolder().addCallback(this);
-
+        controlsLayout.setOnClickListener(this);
+        fullscreen.setOnClickListener(this);
         playerStateTextView = (TextView) view.findViewById(R.id.player_state_view);
         subtitleLayout = (SubtitleLayout) view.findViewById(R.id.subtitles);
 
-
+        circlePlayPlayer.setVisibility(paused?View.VISIBLE:View.INVISIBLE);
     //  retryButton = (Button) view.findViewById(R.id.retry_button);
     //  retryButton.setOnClickListener(this);
     //  retryMsg = (TextView) view.findViewById(R.id.retry_tv);
@@ -159,12 +158,7 @@ root.setOnClickListener(new DoubleClickListener() {
         }
 
 
-        fullscreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
            return view;
     }
 
@@ -177,9 +171,10 @@ root.setOnClickListener(new DoubleClickListener() {
         // The player will be prepared on receiving audio capabilities.
         if(contentUri!= null){
             preparePlayer();
+
         }
 
-            startPlaying();
+          //  startPlaying();
         audioCapabilitiesReceiver.register();
     }
 
@@ -192,22 +187,20 @@ root.setOnClickListener(new DoubleClickListener() {
         shutterView.setVisibility(View.VISIBLE);
         if (!enableBackgroundAudio) {
             releasePlayer();
-        } else {
-            player.setBackgrounded(true);
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        releasePlayer();
+         releasePlayer();
     }
 
     // OnClickListener methods
 
 
     public void startPlaying() {
-        releasePlayer();
+        //releasePlayer();
         preparePlayer();
     }
 
@@ -245,6 +238,8 @@ root.setOnClickListener(new DoubleClickListener() {
             player.setInfoListener(eventLogger);
             player.setInternalErrorListener(eventLogger);
             player.setBackgrounded(enableBackgroundAudio);
+
+
         }
         if (playerNeedsPrepare) {
             player.prepare();
@@ -252,7 +247,8 @@ root.setOnClickListener(new DoubleClickListener() {
           //  updateButtonVisibilities();
         }
         player.setSurface(surfaceView.getHolder().getSurface());
-        player.setPlayWhenReady(true);
+        circlePlayPlayer.setVisibility(paused ? View.VISIBLE : View.INVISIBLE);
+        player.setPlayWhenReady(!paused);
     }
 
 
@@ -333,45 +329,8 @@ root.setOnClickListener(new DoubleClickListener() {
                 height == 0 ? 1 : (width * pixelWidthAspectRatio) / height);
     }
 
-    // User controls
 
 
-    public void toggleControlsVisibility() {
-
-//        View decorView =  getActivity().getWindow().getDecorView();
-//
-//        ((MainActivity) getActivity()).hideMenu();
-//
-//
-//
-//        ActionBarFragment actionBarFragment = (ActionBarFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.action_bar_fragment);
-//
-//        if(!actionBarFragment.isHidden() || !decorView.isShown()) {
-//            getActivity().getSupportFragmentManager().beginTransaction()
-//                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, 0, 0)
-//                    .hide(actionBarFragment).commit();
-//            ((MainActivity) getActivity()).hideList();
-//
-//
-//            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
-//                    | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
-//                    | View.SYSTEM_UI_FLAG_IMMERSIVE);
-//        }else {
-//
-//            getActivity().getSupportFragmentManager().beginTransaction()
-//                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,0,0).show(actionBarFragment).commit();
-//
-//
-//
-//        }
-
-    }
-
-
-    // DemoPlayer.CaptionListener implementation
 
     @Override
     public void onCues(List<Cue> cues) {
@@ -425,6 +384,7 @@ root.setOnClickListener(new DoubleClickListener() {
 
 
     public void setPlayWhenReady(boolean b){
+        paused = b;
         player.setPlayWhenReady(b);
     }
 

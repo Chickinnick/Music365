@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
     <dimen name="activity_vertical_margin">8dp</dimen>
     <dimen name="toolbar_width_icon">30dp</dimen>
     <dimen name="channel_description_layout_height">100dp</dimen>
     <dimen name="programm_description_layout_height">50dp</dimen>
     <dimen name="button_margin">3dp</dimen>
-    <dimen name="channel_item_padding">16dp</dimen>
+    <dimen name="channel_item_padding">6dp</dimen>
     <dimen name="button_info_margin">16dp</dimen>
     <dimen name="header_text_size">20sp</dimen>
     <dimen name="est_conn_text_w">350dp</dimen>
     <dimen name="videoFrame_h">300dp</dimen>
+    <dimen name="menu_drawable_padding">12dp</dimen>
+    <dimen name="menu_icon_side">40dp</dimen>
+    <dimen name="menu_margin_btns">30dp</dimen>
+    <dimen name="channel_title_text_size">40sp</dimen>
+    <dimen name="info_btn_side">30dp</dimen>
 </resources>

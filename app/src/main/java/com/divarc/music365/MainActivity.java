@@ -9,12 +9,9 @@ import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -108,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.item5).setOnClickListener(this);
         findViewById(R.id.item6).setOnClickListener(this);
         findViewById(R.id.item7).setOnClickListener(this);
+        findViewById(R.id.item8).setOnClickListener(this);
 
         shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
@@ -240,17 +238,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main_activity, menu);
-
-
-        MenuItem shareItem = menu.findItem(R.id.action_share);
-        ShareActionProvider myShareActionProvider =
-                (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
-        myShareActionProvider.setShareIntent(shareIntent);
-        return true;
-    }
 
     @Override
     public void onBackPressed() {
@@ -298,6 +285,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@365music.ru"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "FEEDBACK");
                 startActivity(Intent.createChooser(intent, "Send Email"));
+                break;
+            case R.id.item8:
+                finish();
                 break;
         }
 
@@ -542,5 +532,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
+    public void onShareButtonClicked(View view) {
+startActivity(shareIntent);
+    }
 }

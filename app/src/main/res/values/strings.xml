@@ -7,6 +7,7 @@
     <string name="item_5_rate_us">Оценить нас</string>
     <string name="item_6_site">Сайт</string>
     <string name="item_7_contact_us">Написать нам</string>
+    <string name="item_8_exit">Выход</string>
     <string name="more">Подробнее</string>
     <string name="advertisment">Реклама</string>
     <string name="yes">ДА</string>
@@ -14,10 +15,14 @@
     <string name="later">Смотрите позже</string>
     <string name="all_channels">Все каналы</string>
     <string name="broadcast">Эфир</string>
-	<string name="play_in_bg">Играть в фоне</string>
-	<string name="play_in_bg_details">Если свернуть приложение или заблокировать экран - воспроизведение канала будет продолжаться</string>
-	<string name="keep_conn">Поддерживать подключение</string>
+    <string name="play_in_bg">Играть в фоне</string>
+    <string name="play_in_bg_details">Если свернуть приложение или заблокировать экран - воспроизведение канала будет продолжаться</string>
+    <string name="keep_conn">Поддерживать подключение</string>
     <string name="keep_conn_details">При обрыве соединения приложение будет постоянно пытаться соединиться с сервером</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6525352430083157/9982823823</string>
     <string name="fullscreen_ad_unit_id" translatable="false">ca-app-pub-0184729216668333/8464835128</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

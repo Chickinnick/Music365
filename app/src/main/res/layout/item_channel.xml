@@ -18,7 +18,7 @@
 
             android:clickable="false"
             android:id="@+id/cahnnel_title"
-            style="@style/MainTitle"
+            style="@style/ChannelTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -31,12 +31,15 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_below="@+id/channel_description_layout"
+    android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
         android:clickable="false"
         android:id="@+id/channel_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/channel_description_layout" />
+        android:layout_height="wrap_content"/>
 
 
     <ImageView
@@ -45,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/play_ic" />
-
+    </RelativeLayout>
 
     <RelativeLayout
         android:clickable="false"
@@ -67,11 +70,12 @@
             android:layout_margin="@dimen/button_info_margin"
             android:background="@drawable/info_ic"
             android:id="@+id/info_program_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/info_btn_side"
+            android:layout_height="@dimen/info_btn_side"
             android:layout_toRightOf="@+id/time_program" />
 
         <TextView
+            android:layout_centerVertical="true"
             android:clickable="false"
             android:id="@+id/program_title"
             style="@style/MainTitle"

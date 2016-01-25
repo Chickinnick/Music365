@@ -373,7 +373,7 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
   public void release() {
     rendererBuilder.cancel();
     rendererBuildingState = RENDERER_BUILDING_STATE_IDLE;
-    surface = null;
+  //  surface = null;
     player.release();
   }
 

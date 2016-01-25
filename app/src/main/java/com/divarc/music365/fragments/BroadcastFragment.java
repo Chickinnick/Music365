@@ -46,6 +46,20 @@ public class BroadcastFragment extends Fragment implements View.OnClickListener 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getActivity().getSharedPreferences(MESSAGE_PREF, Context.MODE_PRIVATE);
+        playerFragment = new PlayerFragment();
+        mainActivity = (MainActivity) getActivity();
+        datachannel = mainActivity.datachannel;
+
+        if (datachannel != null) {
+            urlTag = datachannel.getChannels().get(indexOfChannel).getStream();
+            String NAME = datachannel.getChannels().get(indexOfChannel).getTitle();
+            mainActivity.setChannelTitle(NAME);
+            Log.d("BROADCAST", urlTag + " " + NAME);
+           // listLaterAdapter = new ListLaterAdapter(mainActivity, datachannel.getChannels().get(indexOfChannel).getDays(), programsAdapter);
+        //    listViewLater.setAdapter(listLaterAdapter);
+
+        }
+
     }
 
     @Override
@@ -53,9 +67,7 @@ public class BroadcastFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_broadcast, container, false);
 
-        playerFragment = new PlayerFragment();
-        mainActivity = (MainActivity) getActivity();
-        datachannel = mainActivity.datachannel;
+
         ArrayList<Programmsstats> programmsstats = datachannel.getChannels().get(indexOfChannel).getProgrammsstatses();
         programsAdapter = new ProgramsAdapter(mainActivity, programmsstats);
         listViewLater = (ListView) view.findViewById(R.id.watch_later);
@@ -65,8 +77,10 @@ public class BroadcastFragment extends Fragment implements View.OnClickListener 
 
         String NAME = datachannel.getChannels().get(indexOfChannel).getTitle();
         Log.d("BROADCAST", urlTag + " " + NAME);
+
         ImageView fullscreen = (ImageView) view.findViewById(R.id.fullscreen);
         fullscreen.setTag(urlTag);
+        fullscreen.setOnClickListener(playerFragment);
 
         mainActivity.getSupportFragmentManager().beginTransaction()
                 .replace(R.id.video_frame, playerFragment, urlTag).commit();
@@ -91,15 +105,7 @@ public class BroadcastFragment extends Fragment implements View.OnClickListener 
     public void setIndexOfChannel(int position) {
         Log.d("BROADCAST", "index" + position);
         indexOfChannel = position;
-        if (datachannel != null) {
-            urlTag = datachannel.getChannels().get(indexOfChannel).getStream();
-            String NAME = datachannel.getChannels().get(indexOfChannel).getTitle();
-            mainActivity.setChannelTitle(NAME);
-            Log.d("BROADCAST", urlTag + " " + NAME);
-            listLaterAdapter = new ListLaterAdapter(mainActivity, datachannel.getChannels().get(indexOfChannel).getDays(), programsAdapter);
-            listViewLater.setAdapter(listLaterAdapter);
 
-        }
     }
 
     public int getIndexOfChannel() {

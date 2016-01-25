@@ -20,48 +20,51 @@
         <item name="android:textAppearance">?android:attr/textAppearance</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">32dp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:drawablePadding">16dp</item>
         <item name="android:gravity">center_vertical</item>
+
+
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="DrawerCategory">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?android:attr/textColorSecondaryInverse</item>
-        <item name="android:textSize">14sp</item>
 
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:background">@drawable/md__category_background</item>
 
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-    <style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
-
-    </style>
     <style name="FullscreenTheme" parent="AppTheme">
-        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
-        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">false</item>
         <item name="android:windowBackground">@null</item>
     </style>
 
     <style name="MainTitle">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:textAppearance">?android:attr/textAppearance</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">@dimen/header_text_size</item>
         <item name="android:padding">8dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-<style name="SimpleText">
+
+    <style name="SimpleText">
         <item name="android:textAppearance">?android:attr/textAppearance</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">16sp</item>
         <item name="android:padding">4dp</item>
         <item name="android:drawablePadding">16dp</item>
+    </style>
+
+    <style name="MenuImage">
+        <item name="android:layout_margin">@dimen/menu_drawable_padding</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_width">@dimen/menu_icon_side</item>
+        <item name="android:layout_height">@dimen/menu_icon_side</item>
+    </style>
+
+    <style name="ChannelTitle">
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/channel_title_text_size</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
 </resources>

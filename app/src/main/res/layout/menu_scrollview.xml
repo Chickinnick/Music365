@@ -6,112 +6,187 @@
     android:background="@color/colorBackgroundAll">
 
 
-
     <LinearLayout
-        android:background="@color/colorBackgroundAll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBackgroundAll"
         android:orientation="vertical">
+
         <RelativeLayout
 
-            android:padding="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="?android:actionBarSize"
             android:background="@color/colorActionBar"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize">
+            android:padding="@dimen/activity_vertical_margin">
 
             <ImageView
-                android:src="@drawable/menu_header"
-                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/menu_header" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/item1"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_1_chaneels"
-            android:text="@string/item_1_channels"
-            style="@style/DrawerTitle" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/item2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_2_programms"
-            android:text="@string/item_2_programms"
-            style="@style/DrawerTitle" />
+            <ImageView
+                android:id="@+id/item1_image"
+                style="@style/MenuImage"
+                android:src="@drawable/item_1_chaneels" />
 
-
-        <TextView
-            android:id="@+id/item3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_3_disable_ads"
-            android:text="@string/item_3_disable_ads"
-            style="@style/DrawerTitle" />
-
-        <TextView
-            android:id="@+id/item4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_4_settings"
-            android:text="@string/item_4_settings"
-            style="@style/DrawerTitle" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DrawerCategory" />
-
-        <TextView
-            android:id="@+id/item5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_5_rate_us"
-            android:text="@string/item_5_rate_us"
-            style="@style/DrawerTitle" />
-
-        <TextView
-            android:id="@+id/item6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_6_site"
-            android:text="@string/item_6_site"
-            style="@style/DrawerTitle" />
-
-        <TextView
-            android:id="@+id/item7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/item_7_contact_us"
-            android:text="@string/item_7_contact_us"
-            style="@style/DrawerTitle" />
+            <TextView
+                android:id="@+id/item1"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item1_image"
+                android:text="@string/item_1_channels" />
+        </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="40dp"
-            android:background="@color/colorBackgroundAll"
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_2_programms"
+                style="@style/MenuImage"
+                android:src="@drawable/item_2_programms" />
+
+            <TextView
+                android:id="@+id/item2"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_2_programms"
+                android:text="@string/item_2_programms" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_3_disable_ads"
+                style="@style/MenuImage"
+                android:src="@drawable/item_3_disable_ads" />
+
+            <TextView
+                android:id="@+id/item3"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_3_disable_ads"
+                android:text="@string/item_3_disable_ads" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_4_settings"
+                style="@style/MenuImage"
+                android:src="@drawable/item_4_settings" />
+
+            <TextView
+                android:id="@+id/item4"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_4_settings"
+                android:text="@string/item_4_settings" />
+        </RelativeLayout>
+
+        <LinearLayout android:background="@color/colorTextDark"
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_5_rate_us"
+                style="@style/MenuImage"
+                android:src="@drawable/item_5_rate_us" />
+
+            <TextView
+                android:id="@+id/item5"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_5_rate_us"
+                android:text="@string/item_5_rate_us" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_6_site"
+                style="@style/MenuImage"
+                android:src="@drawable/item_6_site" />
+
+            <TextView
+                android:id="@+id/item6"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_6_site"
+                android:text="@string/item_6_site" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_7_contact_us"
+                style="@style/MenuImage"
+                android:src="@drawable/item_7_contact_us" />
+
+            <TextView
+                android:id="@+id/item7"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_7_contact_us"
+                android:text="@string/item_7_contact_us" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_8_exit"
+                style="@style/MenuImage"
+                android:src="@drawable/item_8_exit" />
+
+            <TextView
+                android:id="@+id/item8"
+                style="@style/DrawerTitle"
+                android:layout_toRightOf="@+id/item_8_exit"
+                android:text="@string/item_8_exit" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorBackgroundAll">
+
             <LinearLayout
-                android:layout_centerInParent="true"
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
                 <ImageView
-                    android:onClick="openVk"
+                    android:layout_width="@dimen/menu_icon_side"
+                    android:layout_height="@dimen/menu_icon_side"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_vk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <ImageView
                     android:onClick="openFB"
+                    android:src="@drawable/ic_fb" />
+                <ImageView
+                    android:layout_width="@dimen/menu_icon_side"
+                    android:layout_height="@dimen/menu_icon_side"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_fb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:onClick="openVk"
+                    android:src="@drawable/ic_vk" />
+
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
